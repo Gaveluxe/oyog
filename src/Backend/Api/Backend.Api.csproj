@@ -5,6 +5,13 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Scalar.AspNetCore" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ServiceDefaults\ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Application\Backend.Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Backend.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
