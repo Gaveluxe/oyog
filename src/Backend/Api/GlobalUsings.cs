@@ -1,0 +1,1 @@
+global using Backend.Application.Common.Interfaces;

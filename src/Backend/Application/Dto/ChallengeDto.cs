@@ -2,9 +2,9 @@ namespace Backend.Application.Dto;
 
 public class ChallengeDto
 {
-    public Guid Id { get; set; }
+    public Guid Id { get; init; }
     
-    public int Year { get; set; }
+    public int Year { get; init; }
 
     public static ChallengeDto FromEntity(Challenge challenge)
     {

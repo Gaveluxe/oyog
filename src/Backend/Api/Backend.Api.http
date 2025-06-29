@@ -1,6 +1,32 @@
-@Backend.Api_HostAddress = http://localhost:5110
+@Backend_Api_HostAddress = https://localhost:7284
 
-GET {{Backend.Api_HostAddress}}/weatherforecast/
+# @name createChallenge
+POST {{Backend_Api_HostAddress}}/challenges/
+Content-Type: application/json
 Accept: application/json
 
+{
+    "year": 2026,
+    "fields": {
+        "test": "demo"
+    }
+}
+
 ###
+
+@challengeId = {{createChallenge.response.body.id}}
+
+POST {{Backend_Api_HostAddress}}/challenges/{{challengeId}}/games
+Content-Type: application/json
+
+{
+  "name": "Mindseye",
+  "year": 2025,
+  "status": {
+    "name": null,
+    "value": 1
+  },
+  "fields": {
+    "test": "demo1"
+  }
+}

@@ -1,9 +1,4 @@
-using Backend.Application.Common.Interfaces;
-using Backend.Application.Dto;
-using Backend.Application.UseCases.Challenges;
-
-using Microsoft.AspNetCore.Mvc;
-
+using Backend.Api.Endpoints;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddInfrastructureServices();
 builder.AddApplicationServices();
 builder.AddApiServices();
+builder.AddServiceDefaults();
 
 var app = builder.Build();
 
@@ -30,7 +26,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapPost("/challenges", async (CreateChallengeCommand command, [FromServices] IMediator mediator) =>
-    await mediator.SendCommandAsync<CreateChallengeCommand, ChallengeDto>(command));
+app.MapChallenges();
 
 app.Run();

@@ -7,6 +7,12 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
 {
     public DbSet<Challenge> Challenges => Set<Challenge>();
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        base.OnConfiguring(optionsBuilder);
+        optionsBuilder.UseSnakeCaseNamingConvention();
+    }
+
     protected override void OnModelCreating(ModelBuilder model)
     {
         base.OnModelCreating(model);
