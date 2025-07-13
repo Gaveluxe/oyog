@@ -5,9 +5,17 @@ var builder = DistributedApplication.CreateBuilder(args);
 var postgres = builder.AddPostgres("postgres");
 var postgresdb = postgres.AddDatabase("postgresdb");
 
-builder.AddProject<Backend_Api>("api")
+var api = builder.AddProject<Backend_Api>("api")
     .WithReference(postgresdb)
-    .WaitFor(postgresdb);
+    .WaitFor(postgresdb)
+    .WithExternalHttpEndpoints();
+
+builder.AddNpmApp("vue", "../Frontend")
+    .WithReference(api)
+    .WithEnvironment("BROWSER", "none")
+    .WithHttpEndpoint(env: "PORT")
+    .WithExternalHttpEndpoints()
+    .PublishAsDockerFile();
 
 if (builder.ExecutionContext.IsRunMode)
 {

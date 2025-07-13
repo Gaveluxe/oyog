@@ -8,6 +8,8 @@ public static class DependencyInjection
 {
     public static WebApplicationBuilder AddApiServices(this WebApplicationBuilder builder)
     {
+        builder.AddServiceDefaults();
+
         builder.Services.AddFastEndpoints();
 
         builder.Services.AddDbContext<AppDbContext>((sp, options) =>

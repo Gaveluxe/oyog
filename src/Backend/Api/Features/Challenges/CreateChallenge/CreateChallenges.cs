@@ -14,6 +14,8 @@ public sealed class CreateChallengeEndpoint : EndpointWithMapping<CreateChalleng
 
     public override async Task HandleAsync(CreateChallengeRequest req, CancellationToken ct)
     {
+        this.Logger.LogInformation("Creating challenge");
+
         Challenge challenge = MapToEntity(req);
         await DbContext.AddAsync(challenge);
         await DbContext.SaveChangesAsync();

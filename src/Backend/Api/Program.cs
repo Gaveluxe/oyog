@@ -11,4 +11,6 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseFastEndpoints();
+app.MapDefaultEndpoints();
+
 app.Run();
