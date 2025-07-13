@@ -1,0 +1,49 @@
+@Backend_Api_HostAddress = https://localhost:7206
+
+### Get all challenges
+
+GET {{Backend_Api_HostAddress}}/api/challenges
+
+### Create challenge
+
+# @name createChallenge
+POST {{Backend_Api_HostAddress}}/api/challenges/
+Content-Type: application/json
+
+{
+  "year": 2026
+}
+
+### Update challenge
+
+@challengeId = {{{{createChallenge.response.body.id}}
+
+PUT {{Backend_Api_HostAddress}}/api/challenges/{{challengeId}}
+Content-Type: application/json
+
+{
+  "year": 2028
+}
+
+### Add game to challenge
+
+@challengeId = {{createChallenge.response.body.id}}
+
+POST {{Backend_Api_HostAddress}}/challenges/{{challengeId}}/games
+Content-Type: application/json
+
+{
+  "name": "Mindseye",
+  "year": 2025,
+  "status": {
+    "name": null,
+    "value": 1
+  }
+}
+
+### 
+
+@inclGames = false
+
+GET {{Backend_Api_HostAddress}}/challenges?inclGames={{inclGames}}
+Accept: application/json
