@@ -5,12 +5,13 @@ builder.AddApiServices();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
+if (builder.Environment.IsDevelopment())
 {
-    scope.ServiceProvider.GetRequiredService<DbInitializer>().Run();
+    using var scope = app.Services.CreateScope();
+    await scope.ServiceProvider.GetRequiredService<DbInitializer>().RunAsync();
 }
 
 app.UseFastEndpoints();
 app.MapDefaultEndpoints();
 
-app.Run();
+await app.RunAsync();
