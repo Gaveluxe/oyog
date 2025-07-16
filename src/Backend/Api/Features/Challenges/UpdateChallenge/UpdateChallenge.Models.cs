@@ -10,5 +10,3 @@ public sealed class Validator : Validator<UpdateChallengeRequest>
         RuleFor(cc => cc.Year).GreaterThan(0);
     }
 }
-
-public sealed record UpdateChallengeResponse(Guid Id, int Year);

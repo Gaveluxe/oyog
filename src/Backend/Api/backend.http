@@ -7,7 +7,7 @@ GET {{Backend_Api_HostAddress}}/api/challenges
 ### Create challenge
 
 # @name createChallenge
-POST {{Backend_Api_HostAddress}}/api/challenges/
+POST {{Backend_Api_HostAddress}}/api/challenges
 Content-Type: application/json
 
 {
@@ -16,7 +16,7 @@ Content-Type: application/json
 
 ### Update challenge
 
-@challengeId = {{{{createChallenge.response.body.id}}
+@challengeId = {{createChallenge.response.body.shortId}}
 
 PUT {{Backend_Api_HostAddress}}/api/challenges/{{challengeId}}
 Content-Type: application/json
@@ -24,6 +24,13 @@ Content-Type: application/json
 {
   "year": 2028
 }
+
+### Get challenge by ID
+
+@challengeId = {{createChallenge.response.body.shortId}}
+
+GET {{Backend_Api_HostAddress}}/api/challenges/{{challengeId}}
+Accept: application/json
 
 ### Add game to challenge
 

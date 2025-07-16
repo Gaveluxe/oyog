@@ -1,11 +1,16 @@
+using Backend.Api.Features.Challenges.CommonModels;
 using Backend.Domain.ChallengeAggregate;
+using Backend.Domain.Common;
 
 namespace Backend.Api.Features.Challenges.GetChallenges;
 
-public record GetChallengesResponse(Guid Id, int Year);
-
-public sealed class GetChallengesMapper: ResponseMapper<IEnumerable<GetChallengesResponse>, IEnumerable<Challenge>>
+public sealed class GetChallengesMapper: ResponseMapper<IEnumerable<ChallengeResponse>, IEnumerable<Challenge>>
 {
-    public override IEnumerable<GetChallengesResponse> FromEntity(IEnumerable<Challenge> entities) =>
-        entities.Select(e => new GetChallengesResponse(e.Id, e.Year));
+    public override IEnumerable<ChallengeResponse> FromEntity(IEnumerable<Challenge> entities) =>
+        entities.Select(e => new ChallengeResponse()
+        {
+            Id = e.Id,
+            ShortId = e.ShortId,
+            Year = e.Year,
+        });
 }
