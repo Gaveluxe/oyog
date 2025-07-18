@@ -1,4 +1,5 @@
 using Backend.Api.Data.Helpers;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AddApiServices();
@@ -13,5 +14,11 @@ if (builder.Environment.IsDevelopment())
 
 app.UseFastEndpoints();
 app.MapDefaultEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseOpenApi(cfg => cfg.Path = "/openapi/{documentName}.json");
+    app.MapScalarApiReference();
+}
 
 await app.RunAsync();
