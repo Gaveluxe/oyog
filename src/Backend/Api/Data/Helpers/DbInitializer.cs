@@ -16,10 +16,9 @@ internal class DbInitializer(AppDbContext context)
 
     private async Task SeedAsync()
     {
-        await context.Challenges.AddAsync(new()
-        {
-            Year = 2025,
-        });
+        await context.Challenges.AddRangeAsync([
+            new("Gaveluxe", 2024),
+            new("Gaveluxe", 2025)]);
 
         await context.SaveChangesAsync();
     }

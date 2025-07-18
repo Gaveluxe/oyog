@@ -19,6 +19,12 @@ builder.AddNpmApp("vue", "../Frontend")
 
 if (builder.ExecutionContext.IsRunMode)
 {
+    api.WithUrlForEndpoint("https", url =>
+    {
+        url.DisplayText = "Scalar (HTTPS)";
+        url.Url = "/scalar";
+    });
+
     postgres.WithPgWeb(cfg => cfg.WithHostPort(55555));
 }
 
