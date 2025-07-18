@@ -11,6 +11,7 @@ public sealed class GetChallengesMapper: ResponseMapper<IEnumerable<ChallengeRes
         {
             Id = e.Id,
             ShortId = e.ShortId,
+            Username = e.Username,
             Year = e.Year,
         });
 }

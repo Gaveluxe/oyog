@@ -4,8 +4,6 @@ import ChallengeList from '@/components/ChallengeList.vue';
 
 <template>
   <main>
-    <h1>One Game One Year</h1>
-
     <h2>Lists</h2>
     <ChallengeList />
   </main>

@@ -14,11 +14,19 @@ export interface ChallengeResponse extends Parsable {
      */
     shortId?: string | null;
     /**
+     * The username property
+     */
+    username?: string | null;
+    /**
      * The year property
      */
     year?: number | null;
 }
 export interface CreateChallengeRequest extends Parsable {
+    /**
+     * The username property
+     */
+    username?: string | null;
     /**
      * The year property
      */
@@ -78,6 +86,7 @@ export function deserializeIntoChallengeResponse(challengeResponse: Partial<Chal
     return {
         "id": n => { challengeResponse.id = n.getStringValue(); },
         "shortId": n => { challengeResponse.shortId = n.getStringValue(); },
+        "username": n => { challengeResponse.username = n.getStringValue(); },
         "year": n => { challengeResponse.year = n.getNumberValue(); },
     }
 }
@@ -88,6 +97,7 @@ export function deserializeIntoChallengeResponse(challengeResponse: Partial<Chal
 // @ts-ignore
 export function deserializeIntoCreateChallengeRequest(createChallengeRequest: Partial<CreateChallengeRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
     return {
+        "username": n => { createChallengeRequest.username = n.getStringValue(); },
         "year": n => { createChallengeRequest.year = n.getNumberValue(); },
     }
 }
@@ -157,6 +167,7 @@ export function serializeChallengeResponse(writer: SerializationWriter, challeng
     if (challengeResponse) {
         writer.writeStringValue("id", challengeResponse.id);
         writer.writeStringValue("shortId", challengeResponse.shortId);
+        writer.writeStringValue("username", challengeResponse.username);
         writer.writeNumberValue("year", challengeResponse.year);
     }
 }
@@ -167,6 +178,7 @@ export function serializeChallengeResponse(writer: SerializationWriter, challeng
 // @ts-ignore
 export function serializeCreateChallengeRequest(writer: SerializationWriter, createChallengeRequest: Partial<CreateChallengeRequest> | undefined | null = {}) : void {
     if (createChallengeRequest) {
+        writer.writeStringValue("username", createChallengeRequest.username);
         writer.writeNumberValue("year", createChallengeRequest.year);
     }
 }

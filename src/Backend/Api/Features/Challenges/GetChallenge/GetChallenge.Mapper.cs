@@ -9,6 +9,7 @@ public class GetChallengeMapper : ResponseMapper<ChallengeResponse, Challenge>
     {
         Id = entity.Id,
         ShortId = entity.ShortId,
+        Username = entity.Username,
         Year = entity.Year,
     };
 }

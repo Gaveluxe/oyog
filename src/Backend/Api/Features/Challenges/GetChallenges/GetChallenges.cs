@@ -17,8 +17,7 @@ public sealed class GetChallengesEndpoint : EndpointWithoutRequest<IEnumerable<C
     {
         var challenges = this.Context.Challenges;
         Response = Map.FromEntity(challenges);
-        
+
         return Task.CompletedTask;
     }
 }
-
