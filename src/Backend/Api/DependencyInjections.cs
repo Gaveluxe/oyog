@@ -1,4 +1,4 @@
-
+using Backend.Api.Common.ModelBinding;
 using Backend.Api.Data.Helpers;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,8 +9,6 @@ public static class DependencyInjection
     public static WebApplicationBuilder AddApiServices(this WebApplicationBuilder builder)
     {
         builder.AddServiceDefaults();
-
-        builder.Services.AddFastEndpoints();
 
         builder.Services.AddDbContext<AppDbContext>((sp, options) =>
             options
@@ -23,6 +21,9 @@ public static class DependencyInjection
         builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
         builder.Services.AddSingleton<AuditColumnInterceptor>();
         builder.Services.AddTransient<DbInitializer>();
+
+        builder.Services.Configure<RouteOptions>(opt => opt.ConstraintMap.Add("shortguid", typeof(ShortGuidRouteConstraint)));
+        builder.Services.AddFastEndpoints();
 
         return builder;
     }

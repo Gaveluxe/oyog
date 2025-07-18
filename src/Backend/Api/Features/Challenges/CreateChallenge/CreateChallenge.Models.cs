@@ -1,6 +1,9 @@
 namespace Backend.Api.Features.Challenges.CreateChallenge;
 
-public record CreateChallengeRequest(int Year) {}
+public record CreateChallengeRequest
+{
+    public int Year { get; init; }
+}
 
 public class CreateChallengeValidator : Validator<CreateChallengeRequest>
 {
@@ -9,5 +12,3 @@ public class CreateChallengeValidator : Validator<CreateChallengeRequest>
         RuleFor(cc => cc.Year).GreaterThan(0);
     }
 }
-
-public record CreateChallengeResponse(Guid Id, int Year) { }

@@ -1,7 +1,9 @@
 
+using Backend.Api.Common.Dtos;
+
 namespace Backend.Api.Features.Challenges.GetChallenges;
 
-public sealed class GetChallengesEndpoint : EndpointWithoutRequest<IEnumerable<GetChallengesResponse>, GetChallengesMapper>
+public sealed class GetChallengesEndpoint : EndpointWithoutRequest<IEnumerable<ChallengeResponse>, GetChallengesMapper>
 {
     public required AppDbContext Context { get; set; }
 

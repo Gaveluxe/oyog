@@ -2,8 +2,16 @@ namespace Backend.Domain.ChallengeAggregate;
 
 public sealed class Challenge : BaseEntity, IAggregateRoot
 {
+    public string ShortId { get; set; }
+    
     public int Year { get; set; }
 
+    public Challenge()
+    {
+        this.Id = Guid.CreateVersion7();
+        this.ShortId = ShortGuid.Encode(this.Id);
+    }
+    
     // public List<Game> Games { get; set; }
 
     // public List<FieldDefinition> FieldsDefinition { get; set; } = [];

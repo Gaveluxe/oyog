@@ -1,8 +1,9 @@
+using Backend.Api.Common.Dtos;
 using Backend.Domain.ChallengeAggregate;
 
 namespace Backend.Api.Features.Challenges.CreateChallenge;
 
-public sealed class CreateChallengeEndpoint : EndpointWithMapping<CreateChallengeRequest, CreateChallengeResponse, Challenge>
+public sealed class CreateChallengeEndpoint : Endpoint<CreateChallengeRequest, ChallengeResponse, CreateChallengeMapper>
 {
     public required AppDbContext DbContext { get; set; }
 
@@ -16,17 +17,10 @@ public sealed class CreateChallengeEndpoint : EndpointWithMapping<CreateChalleng
     {
         this.Logger.LogInformation("Creating challenge");
 
-        Challenge challenge = MapToEntity(req);
+        Challenge challenge = Map.ToEntity(req);
         await DbContext.AddAsync(challenge);
         await DbContext.SaveChangesAsync();
 
-        Response = MapFromEntity(challenge);
+        Response = Map.FromEntity(challenge);
     }
-    
-    public override Challenge MapToEntity(CreateChallengeRequest req) => new()
-    {
-        Year = req.Year,
-    };
-
-    public override CreateChallengeResponse MapFromEntity(Challenge entity) => new(entity.Id, entity.Year);
 }
