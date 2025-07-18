@@ -7,22 +7,22 @@ public readonly struct ShortGuid : IParsable<ShortGuid>, IEquatable<ShortGuid>
     public static readonly ShortGuid Empty = new(Guid.Empty);
 
     /// <summary>
-    /// Returns the 128-bits Guid representation
+    /// 128-bits Guid representation
     /// </summary>
-    public Guid Guid { get; }
+    private readonly Guid guid;
 
     /// <summary>
-    /// Returns the 22 chars representation of the ShortGuid
+    /// 22 chars representation of the ShortGuid
     /// </summary>
-    public string Value { get; }
+    private readonly string value;
 
     /// <summary>
     /// Returns a ShortGuid instance from an existing Guid
     /// </summary>
     public ShortGuid(Guid guid)
     {
-        this.Value = Encode(guid);
-        this.Guid = guid;
+        this.value = Encode(guid);
+        this.guid = guid;
     }
 
     /// <summary>
@@ -30,12 +30,12 @@ public readonly struct ShortGuid : IParsable<ShortGuid>, IEquatable<ShortGuid>
     /// </summary>
     public ShortGuid(string value)
     {
-        this.Value = value;
-        this.Guid = Decode(value);
+        this.value = value;
+        this.guid = Decode(value);
     }
 
     /// <summary>
-    /// Encodes an existing Guid string value to a ShortGuid
+    /// Encodes an existing Guid string value to a ShortGuid string
     /// </summary>
     /// <param name="value">Guid string value</param>
     /// <returns>ShortGuid string representation</returns>
@@ -45,7 +45,7 @@ public readonly struct ShortGuid : IParsable<ShortGuid>, IEquatable<ShortGuid>
     }
 
     /// <summary>
-    /// Encodes an existing Guid value to a ShortGuid
+    /// Encodes an existing Guid value to a ShortGuid string
     /// </summary>
     /// <param name="value">Guid value</param>
     /// <returns>ShortGuid string representation</returns>
@@ -72,6 +72,14 @@ public readonly struct ShortGuid : IParsable<ShortGuid>, IEquatable<ShortGuid>
         return new Guid(buffer);
     }
 
+    public static bool CanParse(string? s)
+    {
+        // TODO: Implement a more complete check if the value is a valid ShortGuid
+        return !string.IsNullOrEmpty(s) && s.Length == 22;
+    }
+
+    #region IParsable<ShortGuid> implementation
+
     public static ShortGuid Parse(string s, IFormatProvider? provider)
     {
         return new(s);
@@ -89,28 +97,23 @@ public readonly struct ShortGuid : IParsable<ShortGuid>, IEquatable<ShortGuid>
         return true;
     }
 
+    #endregion
+
     public bool Equals(ShortGuid other)
-    {
-        return other.Value == this.Value;
-    }
-
-    public override bool Equals([NotNullWhen(true)] object? obj)
-    {
-        return obj is ShortGuid sg && sg.Value == this.Value;
-    }
-
-    public static bool operator ==(ShortGuid x, ShortGuid y)
-    {
-        return x.Value == y.Value;
-    }
-
-    public static bool operator !=(ShortGuid x, ShortGuid y)
-    {
-        return !(x == y);
-    }
+        => other.value == this.value;
 
     public override int GetHashCode()
-    {
-        return this.Value.GetHashCode();
-    }
+        => this.value.GetHashCode();
+
+    public override bool Equals([NotNullWhen(true)] object? obj)
+        => obj is ShortGuid sg && sg.value == this.value;
+
+    public static implicit operator Guid(ShortGuid shortGuid)
+        => shortGuid.guid;
+
+    public static bool operator ==(ShortGuid x, ShortGuid y)
+        => x.value == y.value;
+
+    public static bool operator !=(ShortGuid x, ShortGuid y)
+        => !(x == y);
 }

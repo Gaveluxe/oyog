@@ -1,5 +1,5 @@
 
-using Backend.Api.Features.Challenges.CommonModels;
+using Backend.Api.Common.Dtos;
 
 namespace Backend.Api.Features.Challenges.GetChallenges;
 

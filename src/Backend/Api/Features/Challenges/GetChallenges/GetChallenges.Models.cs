@@ -1,4 +1,4 @@
-using Backend.Api.Features.Challenges.CommonModels;
+using Backend.Api.Common.Dtos;
 using Backend.Domain.ChallengeAggregate;
 using Backend.Domain.Common;
 

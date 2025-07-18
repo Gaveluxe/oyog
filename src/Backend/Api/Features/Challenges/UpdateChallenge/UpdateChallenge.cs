@@ -1,4 +1,4 @@
-﻿using Backend.Api.Features.Challenges.CommonModels;
+﻿using Backend.Api.Common.Dtos;
 using Backend.Domain.ChallengeAggregate;
 
 namespace Backend.Api.Features.Challenges.UpdateChallenge;
@@ -15,7 +15,7 @@ public sealed class Endpoint : Endpoint<UpdateChallengeRequest, ChallengeRespons
 
     public override async Task HandleAsync(UpdateChallengeRequest req, CancellationToken ct)
     {
-        Challenge? challenge = await this.Context.Challenges.FindAsync(req.ChallengeId);
+        Challenge? challenge = await this.Context.Challenges.FindAsync((Guid)req.ChallengeId);
         if (challenge is null)
         {
             await this.SendNotFoundAsync();

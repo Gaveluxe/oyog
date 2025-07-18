@@ -1,4 +1,4 @@
-namespace Backend.Api.Features.Challenges.CommonModels;
+namespace Backend.Api.Common.Dtos;
 
 public class ChallengeResponse
 {

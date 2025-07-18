@@ -14,23 +14,23 @@ Content-Type: application/json
   "year": 2026
 }
 
+### Get challenge
+
+@id = {{createChallenge.response.body.shortId}}
+
+GET {{Backend_Api_HostAddress}}/api/challenges/{{id}}
+Accept: application/json
+
 ### Update challenge
 
-@challengeId = {{createChallenge.response.body.shortId}}
+@id = {{createChallenge.response.body.shortId}}
 
-PUT {{Backend_Api_HostAddress}}/api/challenges/{{challengeId}}
+PUT {{Backend_Api_HostAddress}}/api/challenges/{{id}}
 Content-Type: application/json
 
 {
   "year": 2028
 }
-
-### Get challenge by ID
-
-@challengeId = {{createChallenge.response.body.shortId}}
-
-GET {{Backend_Api_HostAddress}}/api/challenges/{{challengeId}}
-Accept: application/json
 
 ### Add game to challenge
 

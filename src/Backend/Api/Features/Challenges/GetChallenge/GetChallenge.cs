@@ -1,4 +1,4 @@
-﻿using Backend.Api.Features.Challenges.CommonModels;
+﻿using Backend.Api.Common.Dtos;
 
 namespace Backend.Api.Features.Challenges.GetChallenge;
 
@@ -8,13 +8,13 @@ public sealed class GetChallengeEndpoint : Endpoint<GetChallengeRequest, Challen
 
     public override void Configure()
     {
-        Get("/api/challenges/{id}");
+        Get("/api/challenges/{challengeId:shortguid}");
         AllowAnonymous();
     }
 
     public override async Task HandleAsync(GetChallengeRequest req, CancellationToken ct)
     {
-        var challenge = await this.Context.Challenges.FindAsync(req.Id);
+        var challenge = await this.Context.Challenges.FindAsync((Guid)req.ChallengeId, ct);
         if (challenge is null)
         {
             await SendNotFoundAsync();
