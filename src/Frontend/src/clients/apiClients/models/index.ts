@@ -79,6 +79,7 @@ export function createUpdateChallengeRequestFromDiscriminatorValue(parseNode: Pa
 }
 /**
  * The deserialization information for the current model
+ * @param ChallengeResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
@@ -92,6 +93,7 @@ export function deserializeIntoChallengeResponse(challengeResponse: Partial<Chal
 }
 /**
  * The deserialization information for the current model
+ * @param CreateChallengeRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
@@ -103,6 +105,7 @@ export function deserializeIntoCreateChallengeRequest(createChallengeRequest: Pa
 }
 /**
  * The deserialization information for the current model
+ * @param ErrorResponse The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
@@ -115,6 +118,7 @@ export function deserializeIntoErrorResponse(errorResponse: Partial<ErrorRespons
 }
 /**
  * The deserialization information for the current model
+ * @param ErrorResponse_errors The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
@@ -124,6 +128,7 @@ export function deserializeIntoErrorResponse_errors(errorResponse_errors: Partia
 }
 /**
  * The deserialization information for the current model
+ * @param UpdateChallengeRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
 // @ts-ignore
@@ -153,66 +158,67 @@ export interface ErrorResponse extends ApiError, Parsable {
  * the collection of errors for the current context
  */
 export interface ErrorResponse_errors extends AdditionalDataHolder, Parsable {
-    /**
-     * Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.
-     */
-    additionalData?: Record<string, unknown>;
 }
 /**
  * Serializes information the current object
+ * @param ChallengeResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
-export function serializeChallengeResponse(writer: SerializationWriter, challengeResponse: Partial<ChallengeResponse> | undefined | null = {}) : void {
-    if (challengeResponse) {
-        writer.writeStringValue("id", challengeResponse.id);
-        writer.writeStringValue("shortId", challengeResponse.shortId);
-        writer.writeStringValue("username", challengeResponse.username);
-        writer.writeNumberValue("year", challengeResponse.year);
-    }
+export function serializeChallengeResponse(writer: SerializationWriter, challengeResponse: Partial<ChallengeResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!challengeResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("id", challengeResponse.id);
+    writer.writeStringValue("shortId", challengeResponse.shortId);
+    writer.writeStringValue("username", challengeResponse.username);
+    writer.writeNumberValue("year", challengeResponse.year);
 }
 /**
  * Serializes information the current object
+ * @param CreateChallengeRequest The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
-export function serializeCreateChallengeRequest(writer: SerializationWriter, createChallengeRequest: Partial<CreateChallengeRequest> | undefined | null = {}) : void {
-    if (createChallengeRequest) {
-        writer.writeStringValue("username", createChallengeRequest.username);
-        writer.writeNumberValue("year", createChallengeRequest.year);
-    }
+export function serializeCreateChallengeRequest(writer: SerializationWriter, createChallengeRequest: Partial<CreateChallengeRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!createChallengeRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("username", createChallengeRequest.username);
+    writer.writeNumberValue("year", createChallengeRequest.year);
 }
 /**
  * Serializes information the current object
+ * @param ErrorResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
-export function serializeErrorResponse(writer: SerializationWriter, errorResponse: Partial<ErrorResponse> | undefined | null = {}) : void {
-    if (errorResponse) {
-        writer.writeObjectValue<ErrorResponse_errors>("errors", errorResponse.errors, serializeErrorResponse_errors);
-        writer.writeStringValue("message", errorResponse.messageEscaped ?? "One or more errors occurred!");
-        writer.writeNumberValue("statusCode", errorResponse.statusCode);
-    }
+export function serializeErrorResponse(writer: SerializationWriter, errorResponse: Partial<ErrorResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!errorResponse || isSerializingDerivedType) { return; }
+    writer.writeObjectValue<ErrorResponse_errors>("errors", errorResponse.errors, serializeErrorResponse_errors);
+    writer.writeStringValue("message", errorResponse.messageEscaped ?? "One or more errors occurred!");
+    writer.writeNumberValue("statusCode", errorResponse.statusCode);
 }
 /**
  * Serializes information the current object
+ * @param ErrorResponse_errors The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
-export function serializeErrorResponse_errors(writer: SerializationWriter, errorResponse_errors: Partial<ErrorResponse_errors> | undefined | null = {}) : void {
-    if (errorResponse_errors) {
-        writer.writeAdditionalData(errorResponse_errors.additionalData);
-    }
+export function serializeErrorResponse_errors(writer: SerializationWriter, errorResponse_errors: Partial<ErrorResponse_errors> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!errorResponse_errors || isSerializingDerivedType) { return; }
+    writer.writeAdditionalData(errorResponse_errors.additionalData);
 }
 /**
  * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UpdateChallengeRequest The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
 // @ts-ignore
-export function serializeUpdateChallengeRequest(writer: SerializationWriter, updateChallengeRequest: Partial<UpdateChallengeRequest> | undefined | null = {}) : void {
-    if (updateChallengeRequest) {
-        writer.writeNumberValue("year", updateChallengeRequest.year);
-    }
+export function serializeUpdateChallengeRequest(writer: SerializationWriter, updateChallengeRequest: Partial<UpdateChallengeRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!updateChallengeRequest || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("year", updateChallengeRequest.year);
 }
 export interface UpdateChallengeRequest extends Parsable {
     /**

@@ -17,7 +17,7 @@ public sealed class GetChallengeEndpoint : Endpoint<GetChallengeRequest, Challen
         var challenge = await this.Context.Challenges.FindAsync((Guid)req.ChallengeId, ct);
         if (challenge is null)
         {
-            await SendNotFoundAsync();
+            await Send.NotFoundAsync();
             return;
         }
 

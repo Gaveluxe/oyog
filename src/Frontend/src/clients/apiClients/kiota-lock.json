@@ -2,7 +2,7 @@
   "descriptionHash": "72A4CDA42EAC6ABD1AE22593EF9E38DEE85CDB7BE9E2F09093A603D0106533E9C3CC211C08095B95CBAE65548500FFE214A66BCDACE2ADB186CC37BE4385AC0D",
   "descriptionLocation": "v1.json",
   "lockFileVersion": "1.0.0",
-  "kiotaVersion": "1.27.0",
+  "kiotaVersion": "1.28.0",
   "clientClassName": "ApiClient",
   "typeAccessModifier": "Public",
   "clientNamespaceName": "Frontend",
