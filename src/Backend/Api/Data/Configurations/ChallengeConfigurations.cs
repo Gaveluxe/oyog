@@ -10,5 +10,7 @@ public class ChallengeConfigurations : IEntityTypeConfiguration<Challenge>
     {
         builder.HasKey(c => c.Id);
         builder.HasIndex(c => c.ShortId).IsUnique();
+
+        builder.HasMany(c => c.Games).WithOne(g => g.Challenge);
     }
 }

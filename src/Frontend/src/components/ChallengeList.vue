@@ -17,7 +17,12 @@ const loading = ref(false);
 onBeforeMount(async () => {
   loading.value = true;
   const client = createClient();
-  const results = (await client.api.challenges.get()) ?? [];
+  const results =
+    (await client.api.challenges.get({
+      queryParameters: {
+        g: false, // Do not include games in the response
+      },
+    })) ?? [];
 
   challenges.push(...results);
 

@@ -4,12 +4,18 @@
 // @ts-ignore
 import { createChallengeResponseFromDiscriminatorValue, createErrorResponseFromDiscriminatorValue, serializeChallengeResponse, serializeUpdateChallengeRequest, type ChallengeResponse, type ErrorResponse, type UpdateChallengeRequest } from '../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { GamesRequestBuilderRequestsMetadata, type GamesRequestBuilder } from './games/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /api/challenges/{challengeId}
  */
 export interface WithChallengeItemRequestBuilder extends BaseRequestBuilder<WithChallengeItemRequestBuilder> {
+    /**
+     * The games property
+     */
+    get games(): GamesRequestBuilder;
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<ChallengeResponse>}
@@ -38,6 +44,14 @@ export interface WithChallengeItemRequestBuilder extends BaseRequestBuilder<With
  * Uri template for the request builder.
  */
 export const WithChallengeItemRequestBuilderUriTemplate = "{+baseurl}/api/challenges/{challengeId}";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const WithChallengeItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithChallengeItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    games: {
+        requestsMetadata: GamesRequestBuilderRequestsMetadata,
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

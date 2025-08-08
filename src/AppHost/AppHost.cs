@@ -2,7 +2,9 @@ using Projects;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var postgres = builder.AddPostgres("postgres");
+var postgres = builder.AddPostgres("postgres")
+    .WithLifetime(ContainerLifetime.Persistent);
+
 var postgresdb = postgres.AddDatabase("postgresdb");
 
 var api = builder.AddProject<Backend_Api>("api")
@@ -25,7 +27,8 @@ if (builder.ExecutionContext.IsRunMode)
         url.Url = "/scalar";
     });
 
-    postgres.WithPgWeb(cfg => cfg.WithHostPort(55555));
+    postgres.WithPgWeb(cfg => cfg.WithHostPort(55555))
+        .WithLifetime(ContainerLifetime.Persistent);
 }
 
 builder.Build().Run();

@@ -150,6 +150,39 @@
           }
         }
       }
+    },
+    "/api/challenges/{challengeId}/games": {
+      "get": {
+        "tags": [
+          "Api"
+        ],
+        "operationId": "BackendApiFeaturesChallengesGetChallengeGamesGetChallengeGames",
+        "parameters": [
+          {
+            "name": "challengeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ShortGuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/GameResponse"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -219,6 +252,29 @@
         }
       },
       "GetChallengeRequest": {
+        "type": "object",
+        "additionalProperties": false
+      },
+      "GameResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "shortId": {
+            "type": "string"
+          },
+          "year": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "status": {
+            "type": "string"
+          }
+        }
+      },
+      "GetChallengeGamesRequest": {
         "type": "object",
         "additionalProperties": false
       },

@@ -1,29 +1,45 @@
 <script setup lang="ts">
-import type { ChallengeResponse } from '@/clients/apiClients/models';
+import type { ChallengeResponse, GameResponse } from '@/clients/apiClients/models';
 import { createClient } from '@/services/apiClientFactory';
-import { onBeforeMount, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 
 const props = defineProps<{
   id: string;
 }>();
 
 const loading = ref(false);
-const challenges = ref<ChallengeResponse | undefined>(undefined);
+const gamesLoading = ref(false);
+
+const client = createClient();
+const challenge = ref<ChallengeResponse | undefined>(undefined);
+const games = ref<GameResponse[] | undefined>(undefined);
 
 onMounted(async () => {
-  loading.value = true;
-  const client = createClient();
-  challenges.value = await client.api.challenges.byChallengeId(props.id).get();
-  loading.value = false;
+  await loadChallenge();
+  gamesLoading.value = true;
+  loadGames();
+  gamesLoading.value = false;
 });
+
+const loadChallenge = async () => {
+  challenge.value = await client.api.challenges.byChallengeId(props.id).get();
+};
+
+const loadGames = async () => {
+  loading.value = true;
+  const games = await client.api.challenges.byChallengeId(props.id).games.get();
+  loading.value = false;
+};
 </script>
 
 <template>
   <h2>Challenge</h2>
 
   <v-container v-if="!loading">
-    <div v-if="challenges">
-      <h3>{{ challenges.username }} - {{ challenges.year }}</h3>
+    <div v-if="challenge">
+      <h3>{{ challenge.username }} - {{ challenge.year }}</h3>
+
+      <v-data-table :items="games" :loading="gamesLoading" hide-default-footer></v-data-table>
     </div>
     <div v-else>
       <p>No challenge found.</p>

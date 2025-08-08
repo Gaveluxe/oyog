@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createChallengeResponseFromDiscriminatorValue, createErrorResponseFromDiscriminatorValue, serializeChallengeResponse, serializeCreateChallengeRequest, type ChallengeResponse, type CreateChallengeRequest, type ErrorResponse } from '../../models/index.js';
 // @ts-ignore
-import { type WithChallengeItemRequestBuilder, WithChallengeItemRequestBuilderRequestsMetadata } from './item/index.js';
+import { type WithChallengeItemRequestBuilder, WithChallengeItemRequestBuilderNavigationMetadata, WithChallengeItemRequestBuilderRequestsMetadata } from './item/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
@@ -52,6 +52,7 @@ export const ChallengesRequestBuilderUriTemplate = "{+baseurl}/api/challenges";
 export const ChallengesRequestBuilderNavigationMetadata: Record<Exclude<keyof ChallengesRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     byChallengeId: {
         requestsMetadata: WithChallengeItemRequestBuilderRequestsMetadata,
+        navigationMetadata: WithChallengeItemRequestBuilderNavigationMetadata,
         pathParametersMappings: ["challengeId"],
     },
 };

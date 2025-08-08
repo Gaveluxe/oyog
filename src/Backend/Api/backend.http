@@ -11,6 +11,7 @@ POST {{Backend_Api_HostAddress}}/api/challenges
 Content-Type: application/json
 
 {
+  "username": "Gaveluxe1",
   "year": 2026
 }
 
@@ -34,23 +35,20 @@ Content-Type: application/json
 
 ### Add game to challenge
 
-@challengeId = {{createChallenge.response.body.id}}
+@challengeId = {{createChallenge.response.body.shortId}}
 
-POST {{Backend_Api_HostAddress}}/challenges/{{challengeId}}/games
+POST {{Backend_Api_HostAddress}}/api/challenges/{{challengeId}}/games
 Content-Type: application/json
 
 {
   "name": "Mindseye",
   "year": 2025,
-  "status": {
-    "name": null,
-    "value": 1
-  }
+  "status": "Completed",
 }
 
-### 
+### Get all games by challenge id
 
-@inclGames = false
+@challengeId = {{createChallenge.response.body.shortId}}
 
-GET {{Backend_Api_HostAddress}}/challenges?inclGames={{inclGames}}
+GET {{Backend_Api_HostAddress}}/api/challenges/{{challengeId}}/games
 Accept: application/json

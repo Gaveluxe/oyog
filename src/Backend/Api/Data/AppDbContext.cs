@@ -8,6 +8,8 @@ public class AppDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<Challenge> Challenges { get; set; }
 
+    public DbSet<ChallengeGame> ChallengeGames { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

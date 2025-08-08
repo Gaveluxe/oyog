@@ -1,3 +1,5 @@
+using Backend.Domain.ChallengeAggregate;
+
 namespace Backend.Api.Data.Helpers;
 
 internal class DbInitializer(AppDbContext context)
@@ -9,17 +11,21 @@ internal class DbInitializer(AppDbContext context)
     /// </summary>
     public async Task RunAsync()
     {
+        await this.context.Database.EnsureDeletedAsync();
         await this.context.Database.EnsureCreatedAsync();
-        
+
         await this.SeedAsync();
     }
 
     private async Task SeedAsync()
     {
-        await context.Challenges.AddRangeAsync([
-            new("Gaveluxe", 2024),
-            new("Gaveluxe", 2025)]);
+        var challenge1 = new Challenge("Gaveluxe", 2024);
+        var challenge2 = new Challenge("Gaveluxe", 2025);
 
+        var game = challenge2.AddGame(2025);
+        game.Name = "Mindseye";
+
+        await context.Challenges.AddRangeAsync(challenge1, challenge2);
         await context.SaveChangesAsync();
     }
 }

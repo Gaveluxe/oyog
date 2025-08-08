@@ -71,6 +71,15 @@ export function createErrorResponseFromDiscriminatorValue(parseNode: ParseNode |
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {GameResponse}
+ */
+// @ts-ignore
+export function createGameResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoGameResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UpdateChallengeRequest}
  */
 // @ts-ignore
@@ -128,6 +137,20 @@ export function deserializeIntoErrorResponse_errors(errorResponse_errors: Partia
 }
 /**
  * The deserialization information for the current model
+ * @param GameResponse The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoGameResponse(gameResponse: Partial<GameResponse> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "name": n => { gameResponse.name = n.getStringValue(); },
+        "shortId": n => { gameResponse.shortId = n.getStringValue(); },
+        "status": n => { gameResponse.status = n.getStringValue(); },
+        "year": n => { gameResponse.year = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
  * @param UpdateChallengeRequest The instance to deserialize into.
  * @returns {Record<string, (node: ParseNode) => void>}
  */
@@ -158,6 +181,24 @@ export interface ErrorResponse extends ApiError, Parsable {
  * the collection of errors for the current context
  */
 export interface ErrorResponse_errors extends AdditionalDataHolder, Parsable {
+}
+export interface GameResponse extends Parsable {
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The shortId property
+     */
+    shortId?: string | null;
+    /**
+     * The status property
+     */
+    status?: string | null;
+    /**
+     * The year property
+     */
+    year?: number | null;
 }
 /**
  * Serializes information the current object
@@ -208,6 +249,20 @@ export function serializeErrorResponse(writer: SerializationWriter, errorRespons
 export function serializeErrorResponse_errors(writer: SerializationWriter, errorResponse_errors: Partial<ErrorResponse_errors> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!errorResponse_errors || isSerializingDerivedType) { return; }
     writer.writeAdditionalData(errorResponse_errors.additionalData);
+}
+/**
+ * Serializes information the current object
+ * @param GameResponse The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeGameResponse(writer: SerializationWriter, gameResponse: Partial<GameResponse> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!gameResponse || isSerializingDerivedType) { return; }
+    writer.writeStringValue("name", gameResponse.name);
+    writer.writeStringValue("shortId", gameResponse.shortId);
+    writer.writeStringValue("status", gameResponse.status);
+    writer.writeNumberValue("year", gameResponse.year);
 }
 /**
  * Serializes information the current object
