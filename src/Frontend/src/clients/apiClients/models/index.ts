@@ -22,6 +22,12 @@ export interface ChallengeResponse extends Parsable {
      */
     year?: number | null;
 }
+export interface CreateChallengeGameRequest extends Parsable {
+    /**
+     * The year property
+     */
+    year?: number | null;
+}
 export interface CreateChallengeRequest extends Parsable {
     /**
      * The username property
@@ -40,6 +46,15 @@ export interface CreateChallengeRequest extends Parsable {
 // @ts-ignore
 export function createChallengeResponseFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
     return deserializeIntoChallengeResponse;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {CreateChallengeGameRequest}
+ */
+// @ts-ignore
+export function createCreateChallengeGameRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoCreateChallengeGameRequest;
 }
 /**
  * Creates a new instance of the appropriate class based on discriminator value
@@ -98,6 +113,17 @@ export function deserializeIntoChallengeResponse(challengeResponse: Partial<Chal
         "shortId": n => { challengeResponse.shortId = n.getStringValue(); },
         "username": n => { challengeResponse.username = n.getStringValue(); },
         "year": n => { challengeResponse.year = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param CreateChallengeGameRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoCreateChallengeGameRequest(createChallengeGameRequest: Partial<CreateChallengeGameRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "year": n => { createChallengeGameRequest.year = n.getNumberValue(); },
     }
 }
 /**
@@ -213,6 +239,17 @@ export function serializeChallengeResponse(writer: SerializationWriter, challeng
     writer.writeStringValue("shortId", challengeResponse.shortId);
     writer.writeStringValue("username", challengeResponse.username);
     writer.writeNumberValue("year", challengeResponse.year);
+}
+/**
+ * Serializes information the current object
+ * @param CreateChallengeGameRequest The instance to serialize from.
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeCreateChallengeGameRequest(writer: SerializationWriter, createChallengeGameRequest: Partial<CreateChallengeGameRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!createChallengeGameRequest || isSerializingDerivedType) { return; }
+    writer.writeNumberValue("year", createChallengeGameRequest.year);
 }
 /**
  * Serializes information the current object

@@ -14,35 +14,64 @@ const client = createClient();
 const challenge = ref<ChallengeResponse | undefined>(undefined);
 const games = ref<GameResponse[] | undefined>(undefined);
 
+const headers = [
+  { title: 'Name', key: 'name', sortable: true },
+  { title: 'Year', key: 'year', sortable: true },
+  { title: 'Status', key: 'status', sortable: true },
+];
+
 onMounted(async () => {
   await loadChallenge();
-  gamesLoading.value = true;
   loadGames();
-  gamesLoading.value = false;
 });
 
 const loadChallenge = async () => {
+  loading.value = true;
   challenge.value = await client.api.challenges.byChallengeId(props.id).get();
+  loading.value = false;
 };
 
 const loadGames = async () => {
-  loading.value = true;
-  const games = await client.api.challenges.byChallengeId(props.id).games.get();
-  loading.value = false;
+  gamesLoading.value = true;
+  games.value = await client.api.challenges.byChallengeId(props.id).games.get();
+  gamesLoading.value = false;
+};
+
+const addGame = async () => {
+  const newGame = await client.api.challenges.byChallengeId(props.id).games.post({
+    year: 2023,
+  });
+
+  if (newGame) {
+    games.value?.push(newGame);
+  }
 };
 </script>
 
 <template>
-  <h2>Challenge</h2>
+  <v-data-table
+    v-if="!loading && challenge"
+    :items="games"
+    :headers="headers"
+    :loading="gamesLoading"
+    no-data-text="Aucun challenge n'a été créé pour le moment."
+    hide-default-footer
+  >
+    <template v-slot:top>
+      <v-toolbar flat>
+        <v-toolbar-title> {{ challenge.username }} - {{ challenge.year }} </v-toolbar-title>
 
-  <v-container v-if="!loading">
-    <div v-if="challenge">
-      <h3>{{ challenge.username }} - {{ challenge.year }}</h3>
-
-      <v-data-table :items="games" :loading="gamesLoading" hide-default-footer></v-data-table>
-    </div>
-    <div v-else>
-      <p>No challenge found.</p>
-    </div>
-  </v-container>
+        <v-btn
+          class="me-2"
+          prepend-icon="mdi-plus"
+          text="Add a game"
+          border
+          @click="addGame"
+        ></v-btn>
+      </v-toolbar>
+    </template>
+  </v-data-table>
+  <div v-else-if="!loading">
+    <p>CE challenge n'existe pas.</p>
+  </div>
 </template>

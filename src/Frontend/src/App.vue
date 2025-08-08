@@ -17,7 +17,7 @@ function goHome() {
       >
     </v-app-bar>
 
-    <v-main class="d-flex align-center justify-center" height="300">
+    <v-main class="d-flex align-center justify-center">
       <v-container><RouterView /></v-container>
     </v-main>
   </v-layout>

@@ -4,7 +4,6 @@ import type { ChallengeResponse } from '@/clients/apiClients/models';
 import { createClient } from '@/services/apiClientFactory';
 import type { DataTableHeader } from 'vuetify';
 import router from '@/router';
-import type { RowProps } from 'vuetify/lib/components/VDataTable/types.mjs';
 
 const headers: DataTableHeader[] = [
   { title: 'Username', key: 'username', sortable: true },
@@ -39,7 +38,14 @@ const goToChallenge = (e: Event, row: any) => {
     :items="challenges"
     :headers="headers"
     :loading="loading"
+    no-data-text="Aucun jeu n'a été ajouté à ce challege pour le moment."
     hide-default-footer
     @click:row="goToChallenge"
-  ></v-data-table>
+  >
+    <template #top>
+      <v-toolbar flat>
+        <v-toolbar-title>Challenges</v-toolbar-title>
+      </v-toolbar>
+    </template>
+  </v-data-table>
 </template>

@@ -99,11 +99,16 @@ public readonly struct ShortGuid : IParsable<ShortGuid>, IEquatable<ShortGuid>
 
     #endregion
 
-    public bool Equals(ShortGuid other)
-        => other.value == this.value;
+    public override string ToString()
+    {
+        return this.value;
+    }
 
     public override int GetHashCode()
         => this.value.GetHashCode();
+
+    public bool Equals(ShortGuid other)
+        => other.value == this.value;
 
     public override bool Equals([NotNullWhen(true)] object? obj)
         => obj is ShortGuid sg && sg.value == this.value;

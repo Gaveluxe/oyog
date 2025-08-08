@@ -8,6 +8,7 @@ public class ChallengeConfigurations : IEntityTypeConfiguration<Challenge>
 {
     public void Configure(EntityTypeBuilder<Challenge> builder)
     {
+        builder.Property(g => g.Id).ValueGeneratedNever();
         builder.HasKey(c => c.Id);
         builder.HasIndex(c => c.ShortId).IsUnique();
 

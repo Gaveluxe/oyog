@@ -27,8 +27,9 @@ if (builder.ExecutionContext.IsRunMode)
         url.Url = "/scalar";
     });
 
-    postgres.WithPgWeb(cfg => cfg.WithHostPort(55555))
-        .WithLifetime(ContainerLifetime.Persistent);
+    postgres.WithPgWeb(cfg =>
+        cfg.WithHostPort(55555)
+        .WithLifetime(ContainerLifetime.Persistent));
 }
 
 builder.Build().Run();
