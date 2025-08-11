@@ -4,7 +4,7 @@
 // @ts-ignore
 import { createChallengeResponseFromDiscriminatorValue, createErrorResponseFromDiscriminatorValue, serializeChallengeResponse, serializeUpdateChallengeRequest, type ChallengeResponse, type ErrorResponse, type UpdateChallengeRequest } from '../../../models/index.js';
 // @ts-ignore
-import { GamesRequestBuilderRequestsMetadata, type GamesRequestBuilder } from './games/index.js';
+import { GamesRequestBuilderNavigationMetadata, GamesRequestBuilderRequestsMetadata, type GamesRequestBuilder } from './games/index.js';
 // @ts-ignore
 import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
@@ -50,6 +50,7 @@ export const WithChallengeItemRequestBuilderUriTemplate = "{+baseurl}/api/challe
 export const WithChallengeItemRequestBuilderNavigationMetadata: Record<Exclude<keyof WithChallengeItemRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
     games: {
         requestsMetadata: GamesRequestBuilderRequestsMetadata,
+        navigationMetadata: GamesRequestBuilderNavigationMetadata,
     },
 };
 /**

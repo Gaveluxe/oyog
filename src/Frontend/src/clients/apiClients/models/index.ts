@@ -95,6 +95,15 @@ export function createGameResponseFromDiscriminatorValue(parseNode: ParseNode | 
 /**
  * Creates a new instance of the appropriate class based on discriminator value
  * @param parseNode The parse node to use to read the discriminator value and create the object
+ * @returns {UpdateChallengeGameRequest}
+ */
+// @ts-ignore
+export function createUpdateChallengeGameRequestFromDiscriminatorValue(parseNode: ParseNode | undefined) : ((instance?: Parsable) => Record<string, (node: ParseNode) => void>) {
+    return deserializeIntoUpdateChallengeGameRequest;
+}
+/**
+ * Creates a new instance of the appropriate class based on discriminator value
+ * @param parseNode The parse node to use to read the discriminator value and create the object
  * @returns {UpdateChallengeRequest}
  */
 // @ts-ignore
@@ -173,6 +182,19 @@ export function deserializeIntoGameResponse(gameResponse: Partial<GameResponse> 
         "shortId": n => { gameResponse.shortId = n.getStringValue(); },
         "status": n => { gameResponse.status = n.getStringValue(); },
         "year": n => { gameResponse.year = n.getNumberValue(); },
+    }
+}
+/**
+ * The deserialization information for the current model
+ * @param UpdateChallengeGameRequest The instance to deserialize into.
+ * @returns {Record<string, (node: ParseNode) => void>}
+ */
+// @ts-ignore
+export function deserializeIntoUpdateChallengeGameRequest(updateChallengeGameRequest: Partial<UpdateChallengeGameRequest> | undefined = {}) : Record<string, (node: ParseNode) => void> {
+    return {
+        "name": n => { updateChallengeGameRequest.name = n.getStringValue(); },
+        "status": n => { updateChallengeGameRequest.status = n.getStringValue(); },
+        "year": n => { updateChallengeGameRequest.year = n.getNumberValue(); },
     }
 }
 /**
@@ -304,6 +326,19 @@ export function serializeGameResponse(writer: SerializationWriter, gameResponse:
 /**
  * Serializes information the current object
  * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
+ * @param UpdateChallengeGameRequest The instance to serialize from.
+ * @param writer Serialization writer to use to serialize this model
+ */
+// @ts-ignore
+export function serializeUpdateChallengeGameRequest(writer: SerializationWriter, updateChallengeGameRequest: Partial<UpdateChallengeGameRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
+    if (!updateChallengeGameRequest || isSerializingDerivedType) { return; }
+    writer.writeStringValue("name", updateChallengeGameRequest.name);
+    writer.writeStringValue("status", updateChallengeGameRequest.status);
+    writer.writeNumberValue("year", updateChallengeGameRequest.year);
+}
+/**
+ * Serializes information the current object
+ * @param isSerializingDerivedType A boolean indicating whether the serialization is for a derived type.
  * @param UpdateChallengeRequest The instance to serialize from.
  * @param writer Serialization writer to use to serialize this model
  */
@@ -311,6 +346,20 @@ export function serializeGameResponse(writer: SerializationWriter, gameResponse:
 export function serializeUpdateChallengeRequest(writer: SerializationWriter, updateChallengeRequest: Partial<UpdateChallengeRequest> | undefined | null = {}, isSerializingDerivedType: boolean = false) : void {
     if (!updateChallengeRequest || isSerializingDerivedType) { return; }
     writer.writeNumberValue("year", updateChallengeRequest.year);
+}
+export interface UpdateChallengeGameRequest extends Parsable {
+    /**
+     * The name property
+     */
+    name?: string | null;
+    /**
+     * The status property
+     */
+    status?: string | null;
+    /**
+     * The year property
+     */
+    year?: number | null;
 }
 export interface UpdateChallengeRequest extends Parsable {
     /**

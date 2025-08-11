@@ -4,12 +4,20 @@
 // @ts-ignore
 import { createGameResponseFromDiscriminatorValue, serializeCreateChallengeGameRequest, serializeGameResponse, type CreateChallengeGameRequest, type GameResponse } from '../../../../models/index.js';
 // @ts-ignore
-import { type BaseRequestBuilder, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
+import { type WithGameItemRequestBuilder, WithGameItemRequestBuilderRequestsMetadata } from './item/index.js';
+// @ts-ignore
+import { type BaseRequestBuilder, type KeysToExcludeForNavigationMetadata, type NavigationMetadata, type Parsable, type ParsableFactory, type RequestConfiguration, type RequestInformation, type RequestsMetadata } from '@microsoft/kiota-abstractions';
 
 /**
  * Builds and executes requests for operations under /api/challenges/{challengeId}/games
  */
 export interface GamesRequestBuilder extends BaseRequestBuilder<GamesRequestBuilder> {
+    /**
+     * Gets an item from the Frontend.api.challenges.item.games.item collection
+     * @param gameId Unique identifier of the item
+     * @returns {WithGameItemRequestBuilder}
+     */
+     byGameId(gameId: string) : WithGameItemRequestBuilder;
     /**
      * @param requestConfiguration Configuration for the request such as headers, query parameters, and middleware options.
      * @returns {Promise<GameResponse[]>}
@@ -37,6 +45,15 @@ export interface GamesRequestBuilder extends BaseRequestBuilder<GamesRequestBuil
  * Uri template for the request builder.
  */
 export const GamesRequestBuilderUriTemplate = "{+baseurl}/api/challenges/{challengeId}/games";
+/**
+ * Metadata for all the navigation properties in the request builder.
+ */
+export const GamesRequestBuilderNavigationMetadata: Record<Exclude<keyof GamesRequestBuilder, KeysToExcludeForNavigationMetadata>, NavigationMetadata> = {
+    byGameId: {
+        requestsMetadata: WithGameItemRequestBuilderRequestsMetadata,
+        pathParametersMappings: ["gameId"],
+    },
+};
 /**
  * Metadata for all the requests in the request builder.
  */

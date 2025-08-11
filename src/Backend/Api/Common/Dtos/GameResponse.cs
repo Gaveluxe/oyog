@@ -21,7 +21,7 @@ public class GameResponse
                 Name = e.Name,
                 ShortId = e.ShortId,
                 Year = e.Year,
-                Status = e.Status.Name
+                Status = e.Status
             };
         }
     }
@@ -35,7 +35,7 @@ public class GameResponse
                 Name = g.Name,
                 ShortId = g.ShortId,
                 Year = g.Year,
-                Status = g.Status.Name
+                Status = g.Status
             });
         }
     }

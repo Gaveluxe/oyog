@@ -2,7 +2,7 @@ namespace Backend.Domain.ChallengeAggregate;
 
 public sealed class Challenge : BaseEntity, IAggregateRoot
 {
-    public string ShortId { get; set; }
+    public string ShortId { get; }
 
     public string Username { get; set; }
 
@@ -30,6 +30,19 @@ public sealed class Challenge : BaseEntity, IAggregateRoot
     {
         ChallengeGame game = new(year);
         this.Games.Add(game);
+        return game;
+    }
+
+    public ChallengeGame? UpdateGame(ShortGuid id, string? name, int year, string status)
+    {
+        var game = this.Games.SingleOrDefault(g => g.Id == id);
+        if (game != null)
+        {
+            game.Name = name;
+            game.Year = year;
+            game.Status = status;
+        }
+
         return game;
     }
 }

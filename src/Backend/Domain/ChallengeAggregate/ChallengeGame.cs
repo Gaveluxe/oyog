@@ -2,7 +2,7 @@ namespace Backend.Domain.ChallengeAggregate;
 
 public class ChallengeGame : BaseEntity
 {
-    public string ShortId { get; set; }
+    public string ShortId { get; }
 
     public Guid ChallengeId { get; set; }
 
@@ -10,7 +10,7 @@ public class ChallengeGame : BaseEntity
 
     public int Year { get; set; }
 
-    public GameStatus Status { get; set; }
+    public string Status { get; set; }
 
     public Challenge? Challenge { get; set; }
 
@@ -19,6 +19,6 @@ public class ChallengeGame : BaseEntity
         this.Id = Guid.CreateVersion7();
         this.ShortId = ShortGuid.Encode(this.Id);
         this.Year = year;
-        this.Status = GameStatus.NotStarted;
+        this.Status = "Pas commenc�";
     }
 }

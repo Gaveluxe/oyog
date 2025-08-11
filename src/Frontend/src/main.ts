@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
+import { inlineFields } from './plugins/inlineFields';
 
 import 'vuetify/styles';
 import { createVuetify } from 'vuetify';
@@ -15,6 +16,6 @@ const vuetify = createVuetify({
   },
 });
 
-const app = createApp(App).use(router).use(vuetify);
+const app = createApp(App).use(router).use(vuetify).use(inlineFields);
 
 app.mount('#app');

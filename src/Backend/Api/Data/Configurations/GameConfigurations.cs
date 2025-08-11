@@ -10,9 +10,9 @@ public class GameConfigurations : IEntityTypeConfiguration<ChallengeGame>
     {
         builder.Property(g => g.Id).ValueGeneratedNever();
         builder.HasKey(g => g.Id);
+        
         builder.HasIndex(g => g.ShortId).IsUnique();
 
-        builder.Property(g => g.Status)
-            .HasConversion(s => s.Value, s => GameStatus.FromValue(s));
+        builder.Property(g => g.Status);
     }
 }

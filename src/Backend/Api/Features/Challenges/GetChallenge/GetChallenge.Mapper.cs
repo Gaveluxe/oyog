@@ -15,7 +15,7 @@ public class GetChallengeMapper : ResponseMapper<GetChallengeResponse, Challenge
         {
             ShortId = g.ShortId,
             Name = g.Name,
-            Status = g.Status.Name,
+            Status = g.Status,
             Year = g.Year,
         }),
     };
