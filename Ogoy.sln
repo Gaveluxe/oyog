@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Backend.Domain", "src\Backe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceDefaults", "src\ServiceDefaults\ServiceDefaults.csproj", "{3435D48F-7470-42C1-9829-95D86B9328A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gateway", "src\Gateway\Gateway.csproj", "{EE084E66-17BF-4EBD-8B65-DE33FC1468EA}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
@@ -46,6 +48,10 @@ Global
 		{3435D48F-7470-42C1-9829-95D86B9328A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3435D48F-7470-42C1-9829-95D86B9328A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3435D48F-7470-42C1-9829-95D86B9328A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE084E66-17BF-4EBD-8B65-DE33FC1468EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE084E66-17BF-4EBD-8B65-DE33FC1468EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE084E66-17BF-4EBD-8B65-DE33FC1468EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE084E66-17BF-4EBD-8B65-DE33FC1468EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -56,5 +62,6 @@ Global
 		{5750A14B-7691-4ADD-BF25-F2C855B2C8CC} = {DBD06875-E239-4402-A43A-ACB23CDDD23A}
 		{18F075AF-2298-4242-81BF-FB4919194DD1} = {DBD06875-E239-4402-A43A-ACB23CDDD23A}
 		{3435D48F-7470-42C1-9829-95D86B9328A1} = {A13A0A31-421D-4127-8374-7FF5003AEDC1}
+		{EE084E66-17BF-4EBD-8B65-DE33FC1468EA} = {A13A0A31-421D-4127-8374-7FF5003AEDC1}
 	EndGlobalSection
 EndGlobal

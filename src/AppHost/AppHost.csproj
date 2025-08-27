@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Backend\Api\Backend.Api.csproj" />
+    <ProjectReference Include="..\Gateway\Gateway.csproj" />
   </ItemGroup>
 
   <Target Name="RestoreNpm" BeforeTargets="Build" Condition=" '$(DesignTimeBuild)' != 'true' ">

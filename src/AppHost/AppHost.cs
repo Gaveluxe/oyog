@@ -12,8 +12,11 @@ var api = builder.AddProject<Backend_Api>("api")
     .WaitFor(postgresdb)
     .WithExternalHttpEndpoints();
 
+var gateway = builder.AddProject<Gateway>("gateway");
+
 builder.AddNpmApp("vue", "../Frontend")
     .WithReference(api)
+    .WithReference(gateway)
     .WithEnvironment("BROWSER", "none")
     .WithHttpEndpoint(env: "PORT")
     .WithExternalHttpEndpoints()
