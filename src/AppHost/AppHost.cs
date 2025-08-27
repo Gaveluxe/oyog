@@ -18,7 +18,7 @@ builder.AddNpmApp("vue", "../Frontend")
     .WithReference(api)
     .WithReference(gateway)
     .WithEnvironment("BROWSER", "none")
-    .WithHttpEndpoint(env: "PORT")
+    .WithHttpsEndpoint(port: 44340, env: "PORT")
     .WithExternalHttpEndpoints()
     .PublishAsDockerFile();
 

@@ -1,12 +1,13 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueDevTools from 'vite-plugin-vue-devtools';
+import mkcert from 'vite-plugin-mkcert';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueDevTools()],
+  plugins: [vue(), vueDevTools(), mkcert()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -22,6 +23,12 @@ export default defineConfig({
         // rewrite: (path) => path.replace(/^\/api/, ''),
         secure: false,
       },
+      '/gateway': {
+        target: process.env.services__gateway__https__0 || process.env.services__gateway__http__0,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/gateway/, ''),
+        secure: false,
+      },
     },
   },
-})
+});

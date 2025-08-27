@@ -18,6 +18,11 @@ const router = createRouter({
       component: () => import('../views/ChallengeView.vue'),
       props: true,
     },
+    {
+      path: '/auth',
+      name: 'auth',
+      component: () => import('../views/AuthCallback.vue'),
+    },
   ],
 });
 

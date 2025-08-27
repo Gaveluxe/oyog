@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { ChallengeResponse, GameResponse } from '@/clients/apiClients/models';
+import GameSelect from '@/components/GameSelect.vue';
 import { createClient } from '@/services/apiClientFactory';
 import { onMounted, ref } from 'vue';
 
@@ -52,7 +53,7 @@ const addGame = async () => {
   });
 };
 
-const updateGame = async (game: GameResponse, e: any) => {
+const updateGame = async (game: GameResponse) => {
   if (game.shortId == null) {
     // If the game does not have a shortId, it means it's a new game that hasn't been saved yet.
     await client.api.challenges.byChallengeId(props.id).games.post({
@@ -70,6 +71,8 @@ const updateGame = async (game: GameResponse, e: any) => {
 </script>
 
 <template>
+  <game-select />
+
   <v-data-table
     v-if="!loading && challenge"
     :items="games"
@@ -93,12 +96,12 @@ const updateGame = async (game: GameResponse, e: any) => {
     </template>
 
     <template #[`item.name`]="{ item }">
-      <v-inline-text-field
+      <v-inline-select-field
         v-model="item.name"
         hide-cancel-icon
         hide-save-icon
-        @blur="updateGame(item, $event)"
-      ></v-inline-text-field>
+        @blur="updateGame(item)"
+      ></v-inline-select-field>
     </template>
 
     <template #[`item.year`]="{ item }">
